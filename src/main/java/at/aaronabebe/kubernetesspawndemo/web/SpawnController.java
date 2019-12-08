@@ -1,6 +1,7 @@
 package at.aaronabebe.kubernetesspawndemo.web;
 
-import at.aaronabebe.kubernetesspawndemo.service.SpawningService;
+import at.aaronabebe.kubernetesspawndemo.kubernetes.MonitoringService;
+import at.aaronabebe.kubernetesspawndemo.queue.SpawningService;
 import io.kubernetes.client.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ import java.util.List;
 @RestController
 public class SpawnController {
 
+    @Autowired
+    private MonitoringService monitoringService;
 
     @Autowired
     private SpawningService spawningService;
@@ -37,5 +40,10 @@ public class SpawnController {
             System.out.println(e.getResponseBody());
             throw e;
         }
+    }
+
+    @GetMapping("/metrics/connections")
+    public long getNumberOfConnections() {
+        return monitoringService.getNumberOfConnections();
     }
 }

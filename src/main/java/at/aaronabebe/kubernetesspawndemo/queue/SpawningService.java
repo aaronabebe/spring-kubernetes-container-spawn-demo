@@ -1,4 +1,4 @@
-package at.aaronabebe.kubernetesspawndemo.service;
+package at.aaronabebe.kubernetesspawndemo.queue;
 
 import io.kubernetes.client.ApiException;
 import io.kubernetes.client.apis.CoreV1Api;
