@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spawn-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spawn-demo
+  template:
+    metadata:
+      labels:
+        app: spawn-demo
+    spec:
+      containers:
+        - name: spawn-demo
+          image: java/kubernetes-spawn-demo:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
